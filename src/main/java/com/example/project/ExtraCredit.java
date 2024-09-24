@@ -42,7 +42,8 @@ public class ExtraCredit {
         int people = 2;
         int percent = 5;
         double cost = 2.79;
-        String items = "a"; 
+        String items = ""; 
+        StringBuilder itemsOrdered = new StringBuilder();
 
         Scanner scan = new Scanner(System.in);
         System.out.print("Type what food was ordered, -1 to stop ordering. ");
@@ -55,6 +56,9 @@ public class ExtraCredit {
         // comparing string inequalities learned from https://stackoverflow.com/questions/8484668/java-does-not-equal-not-working
         while (!items.equals("-1")) {
             items = scan.nextLine();
+            if (!items.equals("-1")) {
+                itemsOrdered.append(items + "\n");
+            }
 
             if (!items.equals("-1")) {
               System.out.print("Type what food was ordered, -1 to stop ordering. ");  
@@ -63,8 +67,8 @@ public class ExtraCredit {
         scan.close();
 
         //Your scanner object and while loop should go here
-                             
-        System.out.println(calculateTip(people, percent, cost, items));
+        //Converting stringBuilder to strings learned from https://www.tutorialspoint.com/converting-a-stringbuilder-to-string-in-java            
+        System.out.println(calculateTip(people, percent, cost, itemsOrdered.toString()));
     }
 }
 
