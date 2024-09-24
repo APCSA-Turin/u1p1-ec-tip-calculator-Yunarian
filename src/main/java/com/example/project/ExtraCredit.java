@@ -8,40 +8,39 @@ public class ExtraCredit {
         StringBuilder result = new StringBuilder();
 
         // The rounding being used is the hacky rounding using int casting showcased on the slides
-        // The program SHOULD only be working with positive numbers, so this should work fine.
+        // The program SHOULD only be working with positive numbers, so this should work fine
+        // unrounded versions of the printed value used to simplify statements later in the program
         result.append("-------------------------------\n");
         result.append("Total bill before tip: $" + cost + "\n" ); //concatenate to this string. DO NOT ERASE AND REWRITE
         result.append("Total percentage: " + percent + "%\n");
 
-        double tipTotal = (int)(cost * percent + 0.5) / 100.0;
+        double unroundedTipTotal = cost / 100 * percent ;
+        double tipTotal = (int)(unroundedTipTotal * 100 + 0.5) / 100.0;
         result.append("Total tip: $" + tipTotal + "\n");
         result.append("Total Bill with tip: $" + (cost + tipTotal) + "\n");
 
-        double costPerPerson = (int)(cost * 100.0 / people + 0.5)/100.0;
+        double unroundedCostPerPerson = cost / people;
+        double costPerPerson = (int)(unroundedCostPerPerson * 100 + 0.5) / 100.0;
         result.append("Per person cost before tip: $" + costPerPerson +"\n");
 
-        double tipPerPerson = (int)((cost * 100.0 / people)/100.0 * percent + 0.5) / 100.0;
+        double unroundedTipPerPerson = unroundedTipTotal / people;
+        double tipPerPerson = (int)(unroundedTipPerPerson * 100 + 0.5) / 100.0;
         result.append("Tip per person: $" + tipPerPerson + "\n");
 
-        // This line is so long because it's using no rounded values...
-        // (cost * 100.0 / people) / 100.0 * percent / 100.0) is tipPerPerson
-        // (cost / people)) * 100 is costPerPerson
-        double costPerPersonTotal = (int)((((cost * 100.0 / people) / 100.0 * percent / 100.0) + (cost / people)) * 100 + 0.5) / 100.0;
+        double costPerPersonTotal = (int)((unroundedTipPerPerson + unroundedCostPerPerson) * 100 + 0.5) / 100.0;
         System.out.println( );
 
         result.append("Total cost per person: $" + costPerPersonTotal + "\n");
         result.append("-------------------------------\n");
-
         result.append("Items ordered:\n");
         result.append(items);
 
         return result.toString();
-    }
-                                   
+    }                        
     public static void main(String[] args) {
-        int people = 2;
-        int percent = 5;
-        double cost = 2.79;
+        int people = 6;
+        int percent = 25;
+        double cost = 52.27;
         String items = ""; 
         StringBuilder itemsOrdered = new StringBuilder();
 
